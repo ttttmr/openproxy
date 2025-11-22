@@ -10,7 +10,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "CC-BY-NC-4.0",
   "description": "",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.70.1",
