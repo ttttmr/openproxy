@@ -128,7 +128,7 @@ export function mapAnthropicRequestToOpenAI(anthropicReq: Anthropic.MessageCreat
     };
 
     if (anthropicReq.max_tokens !== undefined) {
-        openAIReq.max_tokens = anthropicReq.max_tokens;
+        openAIReq.max_completion_tokens = anthropicReq.max_tokens
     }
 
     if (anthropicReq.temperature !== undefined) {

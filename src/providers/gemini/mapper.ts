@@ -91,7 +91,7 @@ export function mapGeminiRequestToOpenAI(geminiReq: GenerateContentRequest, mode
             openAIReq.top_p = geminiReq.generationConfig.topP;
         }
         if (geminiReq.generationConfig.maxOutputTokens !== undefined) {
-            openAIReq.max_tokens = geminiReq.generationConfig.maxOutputTokens;
+            openAIReq.max_completion_tokens = geminiReq.generationConfig.maxOutputTokens;
         }
         if (geminiReq.generationConfig.stopSequences !== undefined) {
             openAIReq.stop = geminiReq.generationConfig.stopSequences;

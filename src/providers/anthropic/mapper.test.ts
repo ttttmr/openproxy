@@ -27,7 +27,20 @@ describe('Anthropic Mapper', () => {
             expect(result.messages).toHaveLength(1);
             expect(result.messages[0].role).toBe('user');
             expect(result.messages[0].content).toBe('Hello, Claude!');
-            expect(result.max_tokens).toBe(1024);
+            expect(result.messages[0].content).toBe('Hello, Claude!');
+            expect(result.max_completion_tokens).toBe(1024);
+        });
+
+        it('should map max_tokens to max_completion_tokens', () => {
+            const anthropicReq: Anthropic.MessageCreateParams = {
+                model: 'claude-3-opus-20240229',
+                max_tokens: 10000,
+                messages: [{ role: 'user', content: 'test' }],
+            };
+
+            const result = mapAnthropicRequestToOpenAI(anthropicReq);
+
+            expect(result.max_completion_tokens).toBe(10000);
         });
 
         it('should handle system prompt correctly', () => {

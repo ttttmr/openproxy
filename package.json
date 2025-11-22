@@ -6,7 +6,7 @@
     "dev": "tsx watch src/node-entry.ts",
     "build": "tsc",
     "start": "node dist/node-entry.js",
-    "test": "vitest run"
+    "test": "vitest run src"
   },
   "keywords": [],
   "author": "",

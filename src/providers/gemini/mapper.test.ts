@@ -87,9 +87,22 @@ describe('Gemini Mapper', () => {
 
             expect(result.temperature).toBe(0.8);
             expect(result.top_p).toBe(0.95);
-            expect(result.max_tokens).toBe(2048);
+            expect(result.max_completion_tokens).toBe(2048);
             expect(result.stop).toEqual(['END']);
             expect(result.n).toBe(2);
+        });
+
+        it('should map maxOutputTokens to max_completion_tokens', () => {
+            const geminiReq: GenerateContentRequest = {
+                contents: [{ role: 'user', parts: [{ text: 'test' }] }],
+                generationConfig: {
+                    maxOutputTokens: 10000,
+                },
+            };
+
+            const result = mapGeminiRequestToOpenAI(geminiReq, 'gemini-pro');
+
+            expect(result.max_completion_tokens).toBe(10000);
         });
 
         it('should map system instruction', () => {
