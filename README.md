@@ -18,6 +18,12 @@ OpenProxy is a lightweight, zero-config gateway designed for **Claude Code** and
 
 ### 1. Deploy/Run
 
+**Docker:**
+
+```bash
+docker run -d -p 3000:3000 ttttmr/openproxy
+```
+
 **Local:**
 
 ```bash

@@ -1,7 +1,7 @@
 import { Context } from 'hono';
 import { mapGeminiRequestToOpenAI, mapOpenAIResponseToGemini, mapOpenAIStreamChunkToGemini } from './mapper';
-import { GenerateContentRequest, GenerateContentResponse, Part, FinishReason } from '@google/generative-ai';
-import OpenAI from 'openai';
+import type { GenerateContentRequest, GenerateContentResponse, Part, FinishReason } from '@google/generative-ai';
+import type OpenAI from 'openai';
 import { extractBaseUrlAndModel } from './url';
 import { ContentfulStatusCode } from 'hono/utils/http-status';
 import { logger } from '../../logger';
@@ -202,7 +202,7 @@ export async function handleStream(c: Context) {
                                                     role: 'model',
                                                     parts: parts,
                                                 },
-                                                finishReason: FinishReason.STOP,
+                                                finishReason: "STOP" as FinishReason,
                                                 index: choice.index,
                                             }],
                                         };

@@ -1,16 +1,13 @@
-import {
+import type {
     Content,
     GenerateContentRequest,
     GenerateContentResponse,
     Part,
     GenerateContentCandidate,
     FinishReason,
-    Tool,
-    ToolConfig,
     FunctionDeclaration,
-    FunctionCallingMode
 } from '@google/generative-ai';
-import OpenAI from 'openai';
+import type OpenAI from 'openai';
 import { logger } from '../../logger';
 
 // Helper to track tool call IDs across the request
@@ -73,9 +70,9 @@ export function mapGeminiRequestToOpenAI(geminiReq: GenerateContentRequest, mode
     // 4. Handle Tool Config
     if (geminiReq.toolConfig && geminiReq.toolConfig.functionCallingConfig) {
         const mode = geminiReq.toolConfig.functionCallingConfig.mode;
-        if (mode === FunctionCallingMode.ANY) {
+        if (mode === "ANY") {
             openAIReq.tool_choice = 'required'; // Closest approximation
-        } else if (mode === FunctionCallingMode.NONE) {
+        } else if (mode === "NONE") {
             openAIReq.tool_choice = 'none';
         } else {
             openAIReq.tool_choice = 'auto';
@@ -301,15 +298,15 @@ export function mapOpenAIStreamChunkToGemini(chunk: OpenAI.Chat.ChatCompletionCh
 function mapFinishReason(reason: string | null | undefined): FinishReason {
     switch (reason) {
         case 'stop':
-            return FinishReason.STOP;
+            return "STOP" as FinishReason;
         case 'length':
-            return FinishReason.MAX_TOKENS;
+            return "MAX_TOKENS" as FinishReason;
         case 'content_filter':
-            return FinishReason.SAFETY;
+            return "SAFETY" as FinishReason;
         case 'tool_calls':
         case 'function_call':
-            return FinishReason.STOP;
+            return "STOP" as FinishReason;
         default:
-            return FinishReason.OTHER;
+            return "OTHER" as FinishReason;
     }
 }

@@ -1,8 +1,8 @@
 import { Context } from 'hono';
-import Anthropic from '@anthropic-ai/sdk';
+import type Anthropic from '@anthropic-ai/sdk';
 import { mapAnthropicRequestToOpenAI, mapOpenAIResponseToAnthropic, mapOpenAIStreamChunkToAnthropic } from './mapper';
-import OpenAI from 'openai';
-import { StatusCode, ContentfulStatusCode } from 'hono/utils/http-status';
+import type OpenAI from 'openai';
+import { ContentfulStatusCode } from 'hono/utils/http-status';
 import { logger } from '../../logger';
 
 export async function handleAnthropic(c: Context) {

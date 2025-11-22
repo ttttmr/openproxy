@@ -1,0 +1,17 @@
+# Dependencies and build artifacts
+node_modules
+dist
+
+# Environment and config
+.env
+.env.local
+.wrangler
+
+# Git and documentation
+.git
+.gitignore
+*.md
+
+# System files
+.DS_Store
+npm-debug.log

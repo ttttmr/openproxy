@@ -18,6 +18,12 @@ OpenProxy 是一个轻量级、零配置的网关，为 Claude Code 和 Gemini C
 
 ### 1. 部署运行
 
+**Docker:**
+
+```bash
+docker run -d -p 3000:3000 ttttmr/openproxy
+```
+
 **本地:**
 
 ```bash
