@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/node-entry.ts",
+    "dev": "tsx watch src/node-entry.dev.ts",
     "build": "tsc",
     "start": "node dist/node-entry.js",
     "test": "vitest run src"
@@ -23,6 +23,7 @@
     "openai": "^6.9.1",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
+    "undici": "^7.15.0",
     "vitest": "^4.0.12"
   }
 }
