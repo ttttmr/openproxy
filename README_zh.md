@@ -7,6 +7,8 @@
 
 OpenProxy 是一个轻量级、零配置的网关，为 Claude Code 和 Gemini CLI 设计，让它们可以使用 OpenAI-Compatible API。
 
+![](assets/arch.png)
+
 ## 特性
 
 - **双客户端支持**: 一个服务同时支持 Claude Code 和 Gemini CLI。
@@ -47,22 +49,23 @@ npm run start
 
 示例配置如下
 
-#### Claude Code
-
 ```bash
-export ANTHROPIC_BASE_URL="http://localhost:3000/https://openrouter.ai/api/v1"
+# openai
+export OPENAI_BASE_URL="https://openrouter.ai/api/v1"
+export OPENAI_API_KEY="sk-..."
+export OPENAI_MODEL="gpt-5"
+
+# claude code
+export ANTHROPIC_BASE_URL="https://openproxy.xlab.app/$OPENAI_BASE_URL"
 export ANTHROPIC_AUTH_TOKEN="sk-..."
-export ANTHROPIC_MODEL="gpt-6"
+export ANTHROPIC_MODEL="gpt-5"
 export ANTHROPIC_DEFAULT_OPUS_MODEL=$ANTHROPIC_MODEL
 export ANTHROPIC_DEFAULT_SONNET_MODEL=$ANTHROPIC_MODEL
 export ANTHROPIC_DEFAULT_HAIKU_MODEL=$ANTHROPIC_MODEL
 export CLAUDE_CODE_SUBAGENT_MODEL=$ANTHROPIC_MODEL
-```
 
-#### Gemini CLI
-
-```bash
-export GOOGLE_GEMINI_BASE_URL="http://localhost:3000/https://openrouter.ai/api/v1"
+# gemini cli
+export GOOGLE_GEMINI_BASE_URL="https://openproxy.xlab.app/$OPENAI_BASE_URL"
 export GEMINI_API_KEY="sk-..."
-export GEMINI_MODEL="gpt-6"
+export GEMINI_MODEL="gpt-5"
 ```

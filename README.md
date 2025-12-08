@@ -7,6 +7,8 @@
 
 OpenProxy is a lightweight, zero-config gateway designed for **Claude Code** and **Gemini CLI**, enabling them to use OpenAI-Compatible APIs.
 
+![](assets/arch.png)
+
 ## Features
 
 - **Dual Client Support**: One service supports both Claude Code and Gemini CLI.
@@ -47,22 +49,23 @@ Point your client to the proxy. The target OpenAI Base URL is embedded directly 
 
 Example configuration:
 
-#### Claude Code
-
 ```bash
-export ANTHROPIC_BASE_URL="http://localhost:3000/https://openrouter.ai/api/v1"
+# openai
+export OPENAI_BASE_URL="https://openrouter.ai/api/v1"
+export OPENAI_API_KEY="sk-..."
+export OPENAI_MODEL="gpt-5"
+
+# claude code
+export ANTHROPIC_BASE_URL="https://openproxy.xlab.app/$OPENAI_BASE_URL"
 export ANTHROPIC_AUTH_TOKEN="sk-..."
-export ANTHROPIC_MODEL="gpt-6"
+export ANTHROPIC_MODEL="gpt-5"
 export ANTHROPIC_DEFAULT_OPUS_MODEL=$ANTHROPIC_MODEL
 export ANTHROPIC_DEFAULT_SONNET_MODEL=$ANTHROPIC_MODEL
 export ANTHROPIC_DEFAULT_HAIKU_MODEL=$ANTHROPIC_MODEL
 export CLAUDE_CODE_SUBAGENT_MODEL=$ANTHROPIC_MODEL
-```
 
-#### Gemini CLI
-
-```bash
-export GOOGLE_GEMINI_BASE_URL="http://localhost:3000/https://openrouter.ai/api/v1"
+# gemini cli
+export GOOGLE_GEMINI_BASE_URL="https://openproxy.xlab.app/$OPENAI_BASE_URL"
 export GEMINI_API_KEY="sk-..."
-export GEMINI_MODEL="gpt-6"
+export GEMINI_MODEL="gpt-5"
 ```
